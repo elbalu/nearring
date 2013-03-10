@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>My app</title>
+<link rel="stylesheet" href="css/app.css" />
+
+<script data-main="js/main" src="js/lib/require.js"></script>
+</head>
+
+
+
+
+
+<body>
+
+{>"public/templates/inc/header.dust"/}
+
+	<div class="container" id="content">
+	    {>"public/templates/{viewName}.dust"/}
+	</div>
+{>"public/templates/inc/footer.dust"/}
+
+</body>
+
+</html> 

@@ -1,0 +1,1 @@
+(function(){dust.register("index",body_0);function body_0(chk,ctx){return chk.write("<h1> Hello Dust!</h1><a href=\"/app\" class=\"proceed\">Get app</a><div id=\"innerContent\"></div>");}return body_0;})();

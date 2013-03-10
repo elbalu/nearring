@@ -1,0 +1,1 @@
+(function(){dust.register("hello",body_0);function body_0(chk,ctx){return chk.write("<h2 id=\"hello\">H ello</h2>");}return body_0;})();

@@ -1,0 +1,3 @@
+<h1> Hello Dust!</h1>
+<a href="/app" class="proceed">Get app</a>
+<div id="innerContent"></div>

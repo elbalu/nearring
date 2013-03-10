@@ -1,0 +1,13 @@
+<div class="navbar navbar-fixed-top"> 
+	<div class="topnav"> 
+		<div class="container"> 
+			<h1>
+				<a href="/">
+					<img class="logo" src="../../../images/sig.png"/>
+				</a>
+				<span id="headerNear">Near</span> <span id="headerRing"> Ring</span>
+			</h1>
+		</div> 
+	</div> 
+</div>
+  

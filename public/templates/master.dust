@@ -5,7 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>My app</title>
 <link rel="stylesheet" href="css/app.css" />
-
+<script src="http://use.edgefonts.net/merienda-one.js"></script> 
+<script src="http://use.edgefonts.net/muli.js"></script>
+<script src="http://use.edgefonts.net/overlock.js"></script>
 <script data-main="js/main" src="js/lib/require.js"></script>
 </head>
 

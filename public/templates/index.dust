@@ -1,3 +1,37 @@
-<h1> Hello Dust!</h1>
+
+{?data.user}
+	{?data.user.newUser}
+		<div>
+			{>"public/templates/inc/carousel.dust"/}
+		</div>
+		{>"public/templates/inc/threePanel.dust"/}
+	{:else}
+		<div class="hero-unit">
+			<h1> Recent Transactions</h1>
+
+		</div>
+		{>"public/templates/post.dust"/}
+	{/data.user.newUser}
+{:else}
+	{>"public/templates/inc/carousel.dust"/}
+	{>"public/templates/inc/features.dust"/}
+{/data.user}
+
+
+
 <a href="/app" class="proceed">Get app</a>
 <div id="innerContent"></div>
+
+<div id="requestModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Modal header</h3>
+</div>
+<div class="modal-body">
+<p>One fine body…</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button class="btn btn-primary">Save changes</button>
+</div>
+</div>

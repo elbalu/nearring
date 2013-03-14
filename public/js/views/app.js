@@ -24,18 +24,28 @@ define([
     },
     
     proceedForm: function(e) {
-
+    	// var $target = this.$(e.target),
+    	// href = $target.attr("action");
+    	// console.log(href);
+    	// $.ajax({
+    	// 	url : href,
+    	// 	type : "POST",
+    	// 	data : $target.serialize(),
+    	// 	success : function(data){
+    	// 		console.log(data)
+    	// 	}
+    	// });
 		$.post(e.target.action,	function(json){
-		    require(['views/' + json.viewName], function(View){
+			require(['views/' + json.viewName], function(View){
 		    	var pageView = new View(json);
-				dust.render('public/templates/' + json.viewName + '.dust', json, function(err, out) {
-					document.getElementById("content").innerHTML = out;
+				dust.render(json.viewName, json, function(err, out) {
+					$('#innerContent').html(out);
 				});
 		    	pageView.render(json);
 		    });    
 		});
 
-	    e.preventDefault();
+  		e.preventDefault();
     },
      proceedFormUserSet: function(e) {
     	

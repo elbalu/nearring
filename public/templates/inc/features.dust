@@ -1,8 +1,6 @@
 
       <!-- START THE FEATURETTES -->
-      <div class="container">
-      <hr class="featurette-divider">
-
+      <div class="">
       <div class="featurette">
         <img class="featurette-image pull-right" src="../../../images/rack.png"/>
         <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>

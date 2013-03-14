@@ -1,0 +1,1 @@
+(function(){dust.register("validateSignup",body_0);function body_0(chk,ctx){return chk.write("<h1>Validate your email !! </h1>");}return body_0;})();

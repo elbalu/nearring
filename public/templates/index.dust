@@ -2,7 +2,8 @@
 {?data.user}
 	{?data.user.newUser}
 		<div>
-			{>"public/templates/inc/carousel.dust"/}
+			{>"public/templates/signup/signup.dust"/}
+			{!}{>"public/templates/inc/carousel.dust"/}{!}
 		</div>
 		{>"public/templates/inc/threePanel.dust"/}
 	{:else}
@@ -13,7 +14,8 @@
 		{>"public/templates/post.dust"/}
 	{/data.user.newUser}
 {:else}
-	{>"public/templates/inc/carousel.dust"/}
+	{>"public/templates/signup/signup.dust"/}
+	{!}{>"public/templates/inc/carousel.dust"/}{!}
 	{>"public/templates/inc/features.dust"/}
 {/data.user}
 

@@ -4,6 +4,20 @@
  */
 module.exports = function(app) {
 	app.get('/', function(req, res){
+        var User = require('../model/user.js');
+       var user = new User();
+        user.firstname = 'balu';
+        user.lastname = 'loganathan';
+        user.email = 'elbalu@gmail.com';
+        user.save(function(error, user){
+            console.log('inside save funtion');
+          if(error){
+            console.log('mongodb error -----');
+            console.log(error);
+          }else{
+            console.log('----user saved--'+ user);
+          }
+        });
         var session = req.session;
 
         req.model = {
@@ -77,7 +91,7 @@ module.exports = function(app) {
 
 
      app.post('/signup', function(req, res){
-        
+
         var json = processSignup(req,res);
             if(req.header('X-Requested-With') == 'XMLHttpRequest') {
                 res.writeHead(200, { 'Content-Type': 'application/json' });

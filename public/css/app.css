@@ -4901,9 +4901,6 @@ a.badge:hover {
   border: 0;
   z-index: 10;
 }
-.carousel .item {
-  height: 500px;
-}
 .carousel img {
   position: absolute;
   top: 0;

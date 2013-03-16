@@ -11,6 +11,8 @@
     "dustjs-helpers" : "*",
     "async": "0.1.x",
     "less-middleware" : "*",
-    "consolidate" : "*"
+    "consolidate" : "*",
+    "mongoose" : "*",
+    "mongodb" : "*"
   }
 }

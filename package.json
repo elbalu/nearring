@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "nodemon ."
   },
   "dependencies": {
     "express": "3.1.0",
@@ -13,6 +13,8 @@
     "less-middleware" : "*",
     "consolidate" : "*",
     "mongoose" : "*",
-    "mongodb" : "*"
+    "mongodb" : "*",
+    "passport":"0.1.12",
+    "passport-facebook": "0.1.4"
   }
 }

@@ -4,33 +4,30 @@
  */
 module.exports = function(app) {
 	app.get('/', function(req, res){
-        var User = require('../model/user.js');
-       var user = new User();
-        user.firstname = 'balu';
-        user.lastname = 'loganathan';
-        user.email = 'elbalu@gmail.com';
-        user.save(function(error, user){
-            console.log('inside save funtion');
-          if(error){
-            console.log('mongodb error -----');
-            console.log(error);
-          }else{
-            console.log('----user saved--'+ user);
-          }
-        });
+        
         var session = req.session;
-
         req.model = {
                 viewName: 'index',
                 master: 'public/templates/master',
                 data: {
                     session:session,
+                    user: session.user,
                     title: 'home page'
 			 }
          };
        res.render(req.model.master, req.model);
 
     });
+
+    app.get('/logout', function(req, res){
+         var session = req.session,
+            user = session.user;
+          req.logOut();
+          delete session.user;
+          res.redirect('/');
+        });
+
+    
         function processHello(req,res){
          var session = req.session;
 

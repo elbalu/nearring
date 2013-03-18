@@ -7,6 +7,18 @@
 				</a>
 				<span id="headerNear">Near</span> <span id="headerRing"> Ring</span>
 			</h1>
+			<div class="logText pull-right">
+					{?data.user.name}
+						<span>
+							<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
+							&#160; {data.user.name} &#160; 
+							<a href="/logout">Log out</a>
+						</span>
+					{:else}
+						<a href="/fbauth"><img class="fbClass" src="../../../images/fb.png"/></a>
+
+					{/data.user.name}
+				</div>
 		</div> 
 	</div> 
 </div>

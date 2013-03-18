@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 require('../../db.js');
 var userSchema = new mongoose.Schema({
- fbId: String,
+ 	fbId: String,
 	name: String,
 	email:{ type: String, lowerCase: true},
 	username: String

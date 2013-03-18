@@ -1,3 +1,13 @@
 <h1>Welcome to Near Ring</h1>
 <h4>Login with FaceBook</h4>
-<a href="/fbauth">Login with FaceBook<img class="fbClass" src="../../../images/fb.png"/></a>
+{?data.user.name}
+						<span>
+							<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
+							&#160; {data.user.name} &#160; 
+							<a href="/logout">Log out</a>
+						</span>
+					{:else}
+						<a href="/fbauth"><img class="fbClass" src="../../../images/fb.png"/></a>
+
+					{/data.user.name}
+				</div>

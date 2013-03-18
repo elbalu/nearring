@@ -10,7 +10,7 @@ var express = require('express')
   , FacebookStrategy = require('passport-facebook').Strategy;
 
 require('dustjs-helpers');
-
+var User = require('./mvc/model/user.js');
 var config = require('./config'),
 routes = require('./routes/index');
 
@@ -25,20 +25,23 @@ passport.deserializeUser(function(id, done){
   });
 })
 
+
+if(process.env.VCAP_SERVICES){
+  var fbClientId = config.production.fb.appId,
+      fbClientSecret = config.production.fb.appSecret,
+      fbCallBackUrl = config.production.fb.url + 'fbauthed';
+}else{
+   var fbClientId = config.development.fb.appId,
+      fbClientSecret = config.development.fb.appSecret,
+      fbCallBackUrl = config.development.fb.url + 'fbauthed';
+}
 /*local */
 
-// passport.use(new FacebookStrategy({
-//   clientID: config.development.fb.appId,
-//   clientSecret: config.development.fb.appSecret,
-//   callbackURL: config.development.fb.url + 'fbauthed'
-// },
-
-/* production */
-
 passport.use(new FacebookStrategy({
-  clientID: config.production.fb.appId,
-  clientSecret: config.production.fb.appSecret,
-  callbackURL: config.production.fb.url + 'fbauthed'
+
+  clientID: fbClientId,
+  clientSecret: fbClientSecret,
+  callbackURL: fbCallBackUrl
 },
 
 
@@ -96,7 +99,7 @@ app.configure('development', function(){
 
 app.get('/fbauth', passport.authenticate('facebook', { scope: 'email'}));
 
-app.get('/fbauthed', passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/'}), routes.loggedin);
+app.get('/fbauthed', passport.authenticate('facebook', {failureRedirect: '/'}), routes.loggedin);
 
 
 http.createServer(app).listen(app.get('port'), function(){

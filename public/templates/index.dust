@@ -11,7 +11,7 @@
 			<h1> Recent Transactions</h1>
 
 		</div>
-		{>"public/templates/post.dust"/}
+		
 	{/data.user.newUser}
 {:else}
 	{>"public/templates/signup/signup.dust"/}

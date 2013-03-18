@@ -5019,6 +5019,35 @@ body {
 .navbar .topnav .container {
   width: 90%;
 }
+.navbar .topnav .logText {
+  color: #fff;
+  font-size: 1em;
+  padding: 5px 0 10px 0;
+}
+@media (max-width: 780px) {
+  .navbar .topnav .logText {
+    font-size: .5em;
+  }
+}
+.navbar .topnav .logText span {
+  font-weight: bold;
+}
+@media (max-width: 780px) {
+  .navbar .topnav .logText span {
+    font-weight: normal;
+  }
+}
+.navbar .topnav .logText a {
+  color: #fff;
+}
+.navbar .topnav .logText img {
+  height: 45px;
+}
+@media (max-width: 780px) {
+  .navbar .topnav .logText img {
+    height: 25px;
+  }
+}
 .navbar .topnav h1 {
   color: #4B4B48;
   display: inline;

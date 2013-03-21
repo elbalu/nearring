@@ -14,6 +14,7 @@ var User = require('./mvc/model/user.js');
 var config = require('./config'),
 routes = require('./routes/index');
 
+
 //setting for passport
 
 passport.serializeUser(function(user, done){
@@ -46,11 +47,12 @@ passport.use(new FacebookStrategy({
 
 
 function(accessToken, refreshToken, profile, done){
-  console.log('----profile----------');
-  console.log(profile);
+    
   process.nextTick(function(){
+
     var query = User.findOne({'fbId': profile.id});
     query.exec(function(err, oldUser){
+
       if(oldUser){
         console.log('Existing User: '+ oldUser.name + ' found and logged in!');
         done(null, oldUser);
@@ -59,7 +61,8 @@ function(accessToken, refreshToken, profile, done){
           newUser.fbId = profile.id;
           newUser.name = profile.displayName;
           newUser.email = profile.emails[0].value,
-          newUser.username = profile.username;
+          newUser.username = profile.username,
+          newUser.accessToken = accessToken;
 
           newUser.save(function(err){
             if(err) throw err;

@@ -1,25 +1,6 @@
 
-{?data.user}
-	{?data.user.newUser}
-		<div>
-			{>"public/templates/signup/signup.dust"/}
-			{!}{>"public/templates/inc/carousel.dust"/}{!}
-		</div>
-		{>"public/templates/inc/threePanel.dust"/}
-	{:else}
-		<div class="hero-unit">
-			<h1> Recent Transactions</h1>
-
-		</div>
-		
-	{/data.user.newUser}
-{:else}
-	{>"public/templates/signup/signup.dust"/}
-	{!}{>"public/templates/inc/carousel.dust"/}{!}
-	{>"public/templates/inc/features.dust"/}
-{/data.user}
-
-
+{>"public/templates/signup/signup.dust"/}
+{>"public/templates/inc/features.dust"/}
 
 <a href="/app" class="proceed">Get app</a>
 <div id="innerContent"></div>

@@ -6,16 +6,21 @@ require.config({
     json: (typeof JSON === "undefined") ? "lib/json2" : "empty:",
     dust: 'lib/dust-core-1.0.0',
     bootstrap:'lib/bootstrap',
-    less:'lib/less-1.3.0.min'
+    less:'lib/less-1.3.0.min',
+    select2: 'lib/select2'
   },
 
   shim: {
   
+    
+    "backbone": {
+      deps: ["underscore", "jquery"]
+    },
     "bootstrap":{
       deps:["jquery"]
     },
-    "backbone": {
-      deps: ["underscore", "jquery"]
+    "select2": {
+      deps: ["jquery"]
     }
   }
 });

@@ -14,6 +14,12 @@ var User = require('./mvc/model/user.js');
 var config = require('./config'),
 routes = require('./routes/index');
 
+//setting up four-square
+var venueModel={};
+var userLoc='';
+   
+
+
 
 //setting for passport
 
@@ -42,12 +48,16 @@ passport.use(new FacebookStrategy({
 
   clientID: fbClientId,
   clientSecret: fbClientSecret,
-  callbackURL: fbCallBackUrl
+  callbackURL: fbCallBackUrl,
+  profileFields: ['id', 'displayName', 'location']
 },
 
 
-function(accessToken, refreshToken, profile, done){
-    
+function(req, accessToken, refreshToken, profile, done){
+    // console.log('--------profile--------');
+    // console.log(profile);
+    // console.log('--------profile--- location -----');
+    // console.log(profile._json.location.name);
   process.nextTick(function(){
 
     var query = User.findOne({'fbId': profile.id});
@@ -62,14 +72,18 @@ function(accessToken, refreshToken, profile, done){
           newUser.name = profile.displayName;
           newUser.email = profile.emails[0].value,
           newUser.username = profile.username,
+          newUser.location = profile._json.location.name,
           newUser.accessToken = accessToken;
 
           newUser.save(function(err){
             if(err) throw err;
             console.log('New User: '+ newUser.name+' created and logged in!');
+            console.log(newUser);
             done(null, newUser);
           });
       }
+
+     
     })
   });
 }
@@ -100,7 +114,88 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/fbauth', passport.authenticate('facebook', { scope: 'email'}));
+app.get('/', function(req, res){
+   
+if(req.session.user){
+     userLoc = req.session.user.location;
+     userLoc=userLoc.split(',');
+     userLoc=userLoc[0];
+
+     console.log('userLoc-----inside index-----');
+     console.log(userLoc);
+    }
+
+
+        var session = req.session;
+       
+        req.model = {
+                viewName: 'index',
+                master: 'public/templates/master',
+                data: {
+                    session:session,
+                    user: session.user,
+                    venues: session.venues,
+                    title: 'home page'
+       }
+         };
+          
+        res.render(req.model.master, req.model);
+
+    });
+
+
+          console.log('userLoc length');
+          console.log(userLoc.length);
+                      if(userLoc.length>0){
+             (function() {
+              var foursquare, params;
+              require('coffee-script');
+
+               if(process.env.VCAP_SERVICES){
+                  var foursquare = (require('./node_modules/foursquarevenues'))(config.production.fs.appId, config.production.fs.appSecret); 
+                }else{
+                  var foursquare = (require('./node_modules/foursquarevenues'))(config.development.fs.appId, config.development.fs.appSecret); 
+                 }
+                 console.log
+              params = {  
+                    //"ll": "37.4093788,-121.8855987"  
+                    "near": userLoc,
+                    "limit": 100
+                };
+              foursquare.getVenues(params, function(errorType, venues) {
+                if (!errorType) {
+                    var venRes = venues.response;
+                   venueModel={
+                    data:venRes
+                   };
+                 }else{
+                  model=errorType;
+                 }
+              });
+             }).call(this);
+            }
+       
+
+
+app.get('/getPlaces', function(req, res){
+  // console.log('------venue model-----');
+  //  console.log(venueModel);
+  //   console.log('--------req.session.user-----------');
+  //  console.log(req.session.user);
+   if(req.session.user){
+        console.log('------venue model-----');
+   console.log(venueModel);
+
+      res.send(venueModel);
+    }
+ 
+  // var model={
+  //   data:'1234'
+  // }
+  // res.send(model);
+});
+
+app.get('/fbauth', passport.authenticate('facebook', { scope: ['email', 'user_location']}));
 
 app.get('/fbauthed', passport.authenticate('facebook', {failureRedirect: '/'}), routes.loggedin);
 

@@ -3,21 +3,10 @@
  * GET home page.
  */
 module.exports = function(app) {
-	app.get('/', function(req, res){
-        
-        var session = req.session;
-        req.model = {
-                viewName: 'index',
-                master: 'public/templates/master',
-                data: {
-                    session:session,
-                    user: session.user,
-                    title: 'home page'
-			 }
-         };
-       res.render(req.model.master, req.model);
+	
+  
 
-    });
+
 
     app.get('/logout', function(req, res){
          var session = req.session,
@@ -27,7 +16,7 @@ module.exports = function(app) {
           res.redirect('/');
         });
 
-    
+
         function processHello(req,res){
          var session = req.session;
 
@@ -56,21 +45,6 @@ module.exports = function(app) {
 
 
     });
-    //  app.post('/signup', function(req, res){
-    //     var session = req.session;
-
-    //     req.model = {
-    //             viewName: 'signup/validateSignup',
-    //             master: 'public/templates/master',
-    //             data: {
-    //                 session:session,
-    //                 title: 'home page',
-    //                 registerEmail: req.body.registerEmail 
-    //          }
-    //      };
-    //    res.render(req.model.master, req.model);
-
-    // });
     
       function processSignup(req,res){
          var session = req.session;

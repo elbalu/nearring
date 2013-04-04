@@ -15,6 +15,9 @@
     "mongoose" : "*",
     "mongodb" : "*",
     "passport":"0.1.12",
-    "passport-facebook": "0.1.4"
+    "passport-facebook": "0.1.4",
+    "fb":"*",
+    "foursquarevenues":"*",
+    "coffee-script":"*"
   }
 }

@@ -7,7 +7,8 @@ require.config({
     dust: 'lib/dust-core-1.0.0',
     bootstrap:'lib/bootstrap',
     less:'lib/less-1.3.0.min',
-    select2: 'lib/select2'
+    select2: 'lib/select2',
+    foursquare: 'lib/foursquareVenues'
   },
 
   shim: {

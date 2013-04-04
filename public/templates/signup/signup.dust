@@ -4,7 +4,7 @@
 		{?data.user.name}
 			<span>
 			<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
-			&#160; {data.user.name} &#160; 
+			&#160; {data.user.name}, &#160 {data.user.location}
 			<a href="/logout">Log out</a>
 			</span>
 			{:else}
@@ -14,15 +14,11 @@
 	<div class="span6">
 		<h4>Create groups.</h4>
 		<p>Create one group for working/studying location and one for leaving location</p>
-		<form action="/store_group" method="post" class="form-horizontal">
-			<div class="control-group">
-				<label class="control-label" for="workGroup">Working or studing place</label>
-				<div class="controls">
-					{!}<input type="text" id="workGroup" placeholder="eg. xyz company, abc university">{!}
-					
-					<input type="hidden" id="e7">
-				</div>
-			</div>
+		<input type="text" id="venueJSON" value="{data.venues}"/>
+		<form action="/store_group" method="post" class="form-horizontal proceed">
+			<input type="hidden" id="e7">
+			<input type="hidden" id="e8">
+			<input type="submit" class="btn btn-primary" value="Save groups"/>
 		</form>
 	</div>
 </div>

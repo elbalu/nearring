@@ -5,18 +5,50 @@ define([
   'bootstrap',
   'dust',
   'select2'
-  ], function($, _, Backbone,Bootstrap, Dust){
+  ], function($, _, Backbone,Bootstrap, Dust, select2){
+  
+
+  // var MyModel = Backbone.Model.extend();
+  //   var MyCollection = Backbone.Collection.extend({
+  //       url: '/getPlaces',
+  //       model: MyModel
+  //   });
+  //   var coll = new MyCollection();
+  //   coll.fetch({
+  //       error: function (collection, response) {
+  //           console.log('error', response);
+  //       },
+  //       success: function (collection, response) {
+  //           console.log('success', response);
+  //       }
+  //   });
+
   var AppView = Backbone.View.extend({
 
     el: $("#content"),
-
     events: {
 			'submit form.proceed': 'proceedForm',
 	    	'click a.proceed': 'proceedInnerLink'
 	 },
 
     initialize: function() {
-      if (localStorage) {
+      //  navigator.geolocation.getCurrentPosition(function(data) {
+      //   var lat = data['coords']['latitude'];
+      //   var lng = data['coords']['longitude'];
+      //   console.log(lat);
+      // console.log(lng);
+      //   });
+  
+    $.ajax({
+       url : '/getPlaces',
+       type : "GET",
+       success : function(data){
+         console.log(data);
+       }
+      });
+
+
+       if (localStorage) {
         if(localStorage.getItem('visit')){
           var key=localStorage.getItem('visit');
           key++;
@@ -40,38 +72,52 @@ define([
         data: function (term, page) {
           return {
             q: term, // search term
-            limit: 10,
+            limit: 20,
             type: 'place',
+            //distance:10000,
             access_token:'AAAFrRxc9yhMBAIlm2VV64ZAEq9qGUp60JnAEl8q435thHCiunvD8hCwRXVAN0jJlKQqPa2M4ZBLl08YRXC8ozHcmTWxt7aKl9csMT10wZDZD'
             //apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
           };
         },
         results: function (data, page) { // parse the results into the format expected by Select2.
-        // since we are using custom formatting functions we do not need to alter remote JSON data
-        console.log(data.data);
-        return {results: data.data};
+         var more = (page * 10) < data.total; // whether or not there are more results available
+          // notice we return the value of more so Select2 knows if more results can be loaded
+          return {results: data.data, more: more};
         }
       },
-      // initSelection: function(element, callback) {
-      // // the input tag has a value attribute preloaded that points to a preselected movie's id
-      // // this function resolves that id attribute to an object that select2 can render
-      // // using its formatResult renderer - that way the movie name is shown preselected
-      //   var id=$(element).val();
-      //   if (id!=="") {
-      //     $.ajax("https://graph.facebook.com/search?q=the%20crossing&type=place&access_token=AAAFrRxc9yhMBAIlm2VV64ZAEq9qGUp60JnAEl8q435thHCiunvD8hCwRXVAN0jJlKQqPa2M4ZBLl08YRXC8ozHcmTWxt7aKl9csMT10wZDZD&limit=25&offset=25&__after_id=180765575381446", {
-      //       data: {
-      //         access_token:'AAAFrRxc9yhMBAIlm2VV64ZAEq9qGUp60JnAEl8q435thHCiunvD8hCwRXVAN0jJlKQqPa2M4ZBLl08YRXC8ozHcmTWxt7aKl9csMT10wZDZD&limit'
-      //       },
-      //       dataType: "jsonp"
-      //     }).done(function(data) { callback(data); });
-      //   }
-      // },
       formatResult: movieFormatResult, // omitted for brevity, see the source of this page
       formatSelection: movieFormatSelection, // omitted for brevity, see the source of this page
-      dropdownCssClass: "bigdrop" // apply css that makes the dropdown taller
-      //escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+      dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+      escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
 
+    $("#e8").select2({
+      placeholder: "living Apt name",
+      minimumInputLength: 1,
+      ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+        url: "https://graph.facebook.com/search",
+        dataType: 'jsonp',
+        data: function (term, page) {
+          return {
+            q: term, // search term
+            limit: 20,
+            type: 'place',
+            //distance:10000,
+            access_token:'AAAFrRxc9yhMBAIlm2VV64ZAEq9qGUp60JnAEl8q435thHCiunvD8hCwRXVAN0jJlKQqPa2M4ZBLl08YRXC8ozHcmTWxt7aKl9csMT10wZDZD'
+            //apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
+          };
+        },
+        results: function (data, page) { // parse the results into the format expected by Select2.
+         var more = (page * 10) < data.total; // whether or not there are more results available
+          // notice we return the value of more so Select2 knows if more results can be loaded
+          return {results: data.data, more: more};
+        }
+      },
+      formatResult: movieFormatResult, // omitted for brevity, see the source of this page
+      formatSelection: movieFormatSelection, // omitted for brevity, see the source of this page
+      dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+      escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+    });
 
    function movieFormatResult(data) {
     console.log('data forated');
@@ -79,15 +125,14 @@ define([
         var markup = "<table class='movie-result'><tr>";
         console.log(data.name);
         if (data.name !== undefined && data.name !== undefined) {
-            markup += "<td class='movie-image'>" + data.name + "</td>";
+            markup += "<td><img class='place-image' src='https://graph.facebook.com/"+data.id+"/picture?type=small'/></td><td class='place-name'>" + data.name + "<p>"+data.location.city+" , "+data.location.state+" , "+data.location.country+"</p></td>";
         }
-        markup += "<td class='movie-info'><div class='movie-title'>" + data.name + "</div>";
       
         markup += "</td></tr></table>"
         return markup;
     }
 
-    function movieFormatSelection(movie) {
+    function movieFormatSelection(data) {
         return data.name;
     }
     	

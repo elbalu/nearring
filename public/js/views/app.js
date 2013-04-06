@@ -39,13 +39,7 @@ define([
       // console.log(lng);
       //   });
   
-    $.ajax({
-       url : '/getPlaces',
-       type : "GET",
-       success : function(data){
-         console.log(data);
-       }
-      });
+   
 
 
        if (localStorage) {
@@ -65,28 +59,29 @@ define([
 
     $("#e7").select2({
       placeholder: "Work / Study location",
-      minimumInputLength: 1,
+      minimumInputLength: 4,
       ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-        url: "https://graph.facebook.com/search",
+        url: "https://api.foursquare.com/v2/venues/search",
         dataType: 'jsonp',
         data: function (term, page) {
           return {
-            q: term, // search term
-            limit: 20,
-            type: 'place',
-            //distance:10000,
-            access_token:'AAAFrRxc9yhMBAIlm2VV64ZAEq9qGUp60JnAEl8q435thHCiunvD8hCwRXVAN0jJlKQqPa2M4ZBLl08YRXC8ozHcmTWxt7aKl9csMT10wZDZD'
-            //apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
-          };
+            query: term, // search term
+            limit: 50,
+            radius:10000,
+            near:'milpitas',
+            client_id:'R0D4KSE2PXCGISCIX02CPYJT553AQT2R2IYPLWMKSLF4GHJT',
+            client_secret:'IGJKGSCSDIFLXKWMMGNJPFR3VC2MI5POP2NL5CGKMWHO5XIQ'
+           };
         },
         results: function (data, page) { // parse the results into the format expected by Select2.
+          data=data.response.groups[0].items;
          var more = (page * 10) < data.total; // whether or not there are more results available
           // notice we return the value of more so Select2 knows if more results can be loaded
-          return {results: data.data, more: more};
+          return {results: data, more: more};
         }
       },
-      formatResult: movieFormatResult, // omitted for brevity, see the source of this page
-      formatSelection: movieFormatSelection, // omitted for brevity, see the source of this page
+      formatResult: venuesFormatResult, // omitted for brevity, see the source of this page
+      formatSelection: venuesFormatSelection, // omitted for brevity, see the source of this page
       dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
       escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
@@ -99,40 +94,43 @@ define([
         dataType: 'jsonp',
         data: function (term, page) {
           return {
-            q: term, // search term
-            limit: 20,
-            type: 'place',
-            //distance:10000,
-            access_token:'AAAFrRxc9yhMBAIlm2VV64ZAEq9qGUp60JnAEl8q435thHCiunvD8hCwRXVAN0jJlKQqPa2M4ZBLl08YRXC8ozHcmTWxt7aKl9csMT10wZDZD'
-            //apikey: "ju6z9mjyajq2djue3gbvv26t" // please do not use so this example keeps working
+            query: term, // search term
+            limit: 50,
+            radius:50000,
+            near:'milpitas',
+            client_id:'R0D4KSE2PXCGISCIX02CPYJT553AQT2R2IYPLWMKSLF4GHJT',
+            client_secret:'IGJKGSCSDIFLXKWMMGNJPFR3VC2MI5POP2NL5CGKMWHO5XIQ'
           };
         },
         results: function (data, page) { // parse the results into the format expected by Select2.
+           data=data.response.groups[0].items;
          var more = (page * 10) < data.total; // whether or not there are more results available
           // notice we return the value of more so Select2 knows if more results can be loaded
+
           return {results: data.data, more: more};
         }
       },
-      formatResult: movieFormatResult, // omitted for brevity, see the source of this page
-      formatSelection: movieFormatSelection, // omitted for brevity, see the source of this page
+      formatResult: venuesFormatResult, // omitted for brevity, see the source of this page
+      formatSelection: venuesFormatSelection, // omitted for brevity, see the source of this page
       dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
       escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
 
-   function movieFormatResult(data) {
+   function venuesFormatResult(data) {
     console.log('data forated');
     console.log(data);
-        var markup = "<table class='movie-result'><tr>";
+    console.log("https://api.foursquare.com/v2/venues/"+data.id+"/photos")
+        var markup = "<table class='venues-result'><tr>";
         console.log(data.name);
         if (data.name !== undefined && data.name !== undefined) {
-            markup += "<td><img class='place-image' src='https://graph.facebook.com/"+data.id+"/picture?type=small'/></td><td class='place-name'>" + data.name + "<p>"+data.location.city+" , "+data.location.state+" , "+data.location.country+"</p></td>";
+            markup += "<td class='place-name'>" + data.name + "<p>"+data.location.city+" , "+data.location.state+" , "+data.location.country+"</p></td>";
         }
       
         markup += "</td></tr></table>"
         return markup;
     }
 
-    function movieFormatSelection(data) {
+    function venuesFormatSelection(data) {
         return data.name;
     }
     	

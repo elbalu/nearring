@@ -3,8 +3,8 @@
       <div class="">
       <div class="featurette">
         <img class="featurette-image pull-right" src="../../../images/rack.png"/>
-        <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">Need some thing for a while. <span class="muted">No need to buy, lend it.</span></h2>
+        <p class="lead">Need a book, DVD or any thing for a while. no need to buy a new one, Ask the people who Live in the same apartment and work / study with you in the same organization / university </p>
         <a href="/create-post" role="button" class="btn btn-primary">Create your request</a>
       </div>
 
@@ -12,16 +12,16 @@
 
       <div class="featurette">
         <img class="featurette-image pull-left" src="http://placehold.it/350x350"/>
-        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">You can lend. <span class="muted">Make money out of it</span></h2>
+        <p class="lead">If you have some thing which you used and not using it anymore. Add it in your virtual libray. Other in the same group can see it and lend it from you and if you want they will pay for it.</p>
       </div>
 
       <hr class="featurette-divider">
 
       <div class="featurette">
         <img class="featurette-image pull-right" src="http://placehold.it/350x350"/>
-        <h2 class="featurette-heading">And lastly, this one. <span class="muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">Give Away. <span class="muted">Give Away the stuff which you are not using</span></h2>
+        <p class="lead">If you are shifting your house or done with the book or any thing you don't want it, just give it to the people in your group and get paid for it.</p>
       </div>
       </div>
       <hr class="featurette-divider">

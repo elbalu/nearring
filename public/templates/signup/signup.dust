@@ -1,24 +1,33 @@
-<div id="signupBanner" class="clearfix">
-	<div class="span6">
-		<h4>Login with FaceBook</h4>
-		{?data.user.name}
-			<span>
-			<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
-			&#160; {data.user.name}, &#160 {data.user.location}
-			<a href="/logout">Log out</a>
-			</span>
-			{:else}
-			<a href="/fbauth"><img class="fbClass" src="../../../images/fb.png"/></a>
-		{/data.user.name}
-	</div>
-	<div class="span6">
-		<h4>Create groups.</h4>
-		<p>Create one group for working/studying location and one for leaving location</p>
-		<input type="text" id="venueJSON" value="{data.venues}"/>
-		<form action="/store_group" method="post" class="form-horizontal proceed">
-			<input type="hidden" id="e7">
-			<input type="hidden" id="e8">
-			<input type="submit" class="btn btn-primary" value="Save groups"/>
-		</form>
-	</div>
+<div id="signupBanner" class="clearfix hero-unit">
+	{!}{?data.signup.personalProfile}{!}
+		<div class="span6">
+			<h4>Personal Profile</h4>
+			
+				{?data.user.name}
+					<form action="/personalProfile" method="post" class="proceed">
+						<span>
+							<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
+							&#160; {data.user.name}
+						</span>
+						<label for="personalEmail">Email</label>
+						<input type="text" value="{data.user.email}" id="personalEmail" name="personalEmail"/>
+						<label for="personalPhone">Phone</label>
+						<input type="text" value="" id="personalPhone" name="personalPhone"/>
+						<input type="submit" class="btn btn-primary" value="Save profile"/>
+					</form>
+					{:else}
+					<a href="/fbauth"><img class="fbClass" src="../../../images/fb.png"/></a>
+				{/data.user.name}
+		</div>
+	{!}{:else}{!}
+		<div class="span6">
+			<h4>Create groups.</h4>
+			<p>Create one group for working/studying location and one for leaving location</p>
+			<form action="/store_group" method="post" class="form-horizontal proceed">
+				<input type="hidden" id="e7">
+				<input type="hidden" id="e8">
+				<input type="submit" class="btn btn-primary" value="Save groups"/>
+			</form>
+		</div>
+	{!}{/data.signup.personalProfile}{!}
 </div>

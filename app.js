@@ -146,51 +146,6 @@ app.get('/', function (req, res) {
 });
 
 
-
-app.get('/getPlaces', function (req, res) {
-    if (req.session.user) {
-        var foursquare, params;
-        require('coffee-script');
-
-        if (process.env.VCAP_SERVICES) {
-            var foursquare = (require('./node_modules/foursquarevenues'))(config.production.fs.appId, config.production.fs.appSecret);
-        } else {
-            var foursquare = (require('./node_modules/foursquarevenues'))(config.development.fs.appId, config.development.fs.appSecret);
-        }
-         foursquare.getAccessToken({
-            code: req.query.code
-          }, function (error, accessToken) {
-            if(error) {
-              res.send('An error was thrown: ' + error.message);
-            }
-            else {
-              // Save the accessToken and redirect.
-            }
-          });
-        params = {
-            //"ll": "37.4093788,-121.8855987"  
-            "near": userLoc,
-            "query":"paypal",
-            "limit": 100,
-            "radius": 10000
-        };
-        foursquare.getVenues(params, function (errorType, venues) {
-            if (!errorType) {
-                var venRes = venues.response;
-                venueModel = {
-                    data: venRes
-                };
-                res.send(venueModel);
-            } else {
-                model = errorType;
-            }
-        });
-
-
-    }
-
-});
-
 app.get('/fbauth', passport.authenticate('facebook', {
     scope: ['email', 'user_location']
 }));

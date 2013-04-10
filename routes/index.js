@@ -4,8 +4,6 @@
 	exports.loggedin = function(req,res){
 		var session = req.session;
 		var user =  req.user;
-		console.log('req.user');
-		console.log(req.user);
 		session.user =  user;
         res.redirect('/');
 	}

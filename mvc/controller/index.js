@@ -5,7 +5,7 @@
 module.exports = function(app) {
 	
   
-
+var User = require('../model/user.js');
 
 
     app.get('/logout', function(req, res){
@@ -72,10 +72,56 @@ module.exports = function(app) {
             else {
                 res.render("public/templates/" + json.baseTemplate,json);
             }
-
-
-
     });
+
+    function processPersonalProfile(req,res){
+         var session = req.session;
+         
+         
+         User.findOne({'fbId':req.body.id}, function(err, user){
+            console.log('user  _id ');
+            console.log(user._id);
+            var id=user._id;
+            var updateObject={
+            emailId: req.body.personalEmail,
+            phone: req.body.personalPhone,
+            personalProfie: true
+         };
+         User.findOne(id, updateObject, function(err, user){
+            if(err){ console.log('updating user error'+ err);
+           // throw err;
+        }else{
+                console.log('user updated');
+                console.log(user);
+            }
+
+         });
+          });
+        return({
+        viewName: "validateSignup",
+        baseTemplate: 'master',
+        data: {
+            title: 'hello Sai',
+            registerEmail: req.body
+        }
+
+        });
+    }
+
+
+     app.post('/personalProfile', function(req, res){
+
+        var json = processPersonalProfile(req,res);
+            if(req.header('X-Requested-With') == 'XMLHttpRequest') {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.write(JSON.stringify(json));
+                res.end();
+            }
+            else {
+                res.render("public/templates/" + json.baseTemplate,json);
+            }
+    });
+
 
 
 

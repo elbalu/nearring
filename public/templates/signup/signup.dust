@@ -9,8 +9,9 @@
 							<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
 							&#160; {data.user.name}
 						</span>
+						<input type="hidden" value="{data.user.fbId}" name="id"/>
 						<label for="personalEmail">Email</label>
-						<input type="text" value="{data.user.email}" id="personalEmail" name="personalEmail"/>
+						<input type="text" value="{data.user.email}" id="personalEmail" name="personalEmail" required/>
 						<label for="personalPhone">Phone</label>
 						<input type="text" value="" id="personalPhone" name="personalPhone"/>
 						<input type="submit" class="btn btn-primary" value="Save profile"/>
@@ -24,7 +25,7 @@
 			<h4>Create groups.</h4>
 			<p>Create one group for working/studying location and one for leaving location</p>
 			<form action="/store_group" method="post" class="form-horizontal proceed">
-				<input type="hidden" id="e7">
+				<input type="hidden" id="e7" required>
 				<input type="hidden" id="e8">
 				<input type="submit" class="btn btn-primary" value="Save groups"/>
 			</form>

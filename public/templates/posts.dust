@@ -1,0 +1,95 @@
+<div id="creatPostCtn">
+	<h2>Create Posts</h2>
+	<div class="sq"></div>
+    <ul class="nav nav-tabs">
+	    <li class="active"><a href="#want" data-toggle="tab">Want</a></li>
+	    <li><a href="#have" data-toggle="tab">Have</a></li>
+    </ul>
+    <div class="tab-content">
+		<div class="tab-pane active" id="want">
+			<h2>Want to lend</h2>
+		    <form class="form-horizontal">
+			    <div class="control-group">
+				    <label class="control-label" for="prdName">Product name</label>
+				    <div class="controls">
+					    <input type="text" id="prdName" placeholder="e.g: Harry poter 6 Dvd, BBQ stove e.t.c">
+				    </div>
+			    </div>
+			    <div class="control-group">
+				    <label class="control-label" for="prdName">For</label>
+				    <div class="controls">
+					   	<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>&lt; 1 week
+						</label>
+						<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">&lt; 2 weeks
+						</label>
+						<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">&lt; 1 month
+						</label>
+						<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">For ever
+						</label>
+					</div>
+				</div>
+				<div class="control-group">
+				    <div class="controls">
+					    <button type="submit" class="btn">Want</button>
+				    </div>
+			    </div>
+			</form>
+		</div>
+		<div class="tab-pane" id="have">
+			<h2>Want to have</h2>
+		    <form class="form-horizontal">
+			    <div class="control-group">
+				    <label class="control-label" for="prdName">Product name</label>
+				    <div class="controls">
+					    <input type="text" id="prdName" placeholder="e.g: Harry poter 6 Dvd, BBQ stove e.t.c">
+				    </div>
+			    </div>
+			    <div class="control-group">
+				    <label class="control-label" for="prdName">For</label>
+				    <div class="controls">
+					   	<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>&lt; 1 week
+						</label>
+						<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">&lt; 2 weeks
+						</label>
+						<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">&lt; 1 month
+						</label>
+						<label class="radio">
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">For ever
+						</label>
+					</div>
+				</div>
+				<div class="control-group">
+				    <label class="control-label" for="prdPic">Picture</label>
+				    <div class="controls">
+					    <input type="file" id="prdPic" placeholder="">
+				    </div>
+			    </div>
+				<div class="control-group">
+				    <label class="control-label" for="prdAmount">Amount</label>
+				    <div class="controls">
+					    <input type="text" id="prdAmount" placeholder=""/> Bucks
+				    </div>
+			    </div>
+				<div class="control-group">
+				    <div class="controls">
+					    <label class="checkbox">
+							<input type="checkbox" name="wantID">Request ID Proof when lending.
+						</label>
+					</div>
+				</div>
+				<div class="control-group">
+				    <div class="controls">
+					    <button type="submit" class="btn">Have</button>
+				    </div>
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>

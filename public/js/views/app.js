@@ -4,7 +4,9 @@ define([
   'backbone',
   'bootstrap',
   'dust',
-  'select2'
+  'select2',
+  'views/usermanager/userList',
+  'views/hello'
   ], function($, _, Backbone,Bootstrap, Dust, select2){
   
 
@@ -32,6 +34,7 @@ define([
 	 },
 
     initialize: function() {
+      console.log(' app view');
       //  navigator.geolocation.getCurrentPosition(function(data) {
       //   var lat = data['coords']['latitude'];
       //   var lng = data['coords']['longitude'];

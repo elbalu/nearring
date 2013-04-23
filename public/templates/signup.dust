@@ -1,0 +1,53 @@
+<div id="signupBanner" class="clearfix hero-unit">
+	{?data.user.name}
+		{@if cond="('{data.user.profileSetup}' == 'empty')"}
+			{>"public/templates/aboutNR.dust" personal="true"/}
+			<div class="span6 thumbnail" id="div-signup-profile">
+				<h4>Personal Profile</h4>
+				<form action="/personalProfile" method="post" class="proceed" id="form-personal-profile">
+					<span>
+						<img src="https://graph.facebook.com/{data.user.username}/picture" alt="{data.user.name}"/>
+						&#160; {data.user.name}
+					</span>
+					
+					<input type="hidden" value="{data.user._id}" name="id" id="userFBId"/>
+					<label for="personalEmail">Email</label>
+					<input type="text" value="{data.user.email}" id="personalEmail" name="personalEmail" required/>
+					<label for="personalPhone">Phone</label>
+					<input type="text" value="" id="personalPhone" name="personalPhone"/>
+					<input type="submit" class="btn btn-primary" value="Save profile"/>
+				</form>
+			</div>
+		{/if}
+		{! personal profile save and move to save group !}
+		{@if cond="('{data.user.profileSetup}' == 'personal')"}
+			{>"public/templates/aboutNR.dust" group="true" /}
+			<div class="span6 thumbnail" id="div-signup-group">
+				<h4>Create groups.</h4>
+				<p>Create one group for working/studying location and one for leaving location</p>
+				<form action="/store_group" method="post" class="form-horizontal proceed" id="form-create-groups">
+					<input type="hidden" value="{data.user._id}" name="id" id="userFBId"/>
+					<input type="hidden" id="e7" required>
+					<input type="hidden" id="e8">
+					<input type="submit" class="btn btn-primary" value="Save groups"/>
+					<input type="hidden" value="" id="workGroup"/>
+					<input type="hidden" value="" id="liveGroup"/>
+				</form>
+			</div>
+		{/if}
+
+		{! group save. congrulate !}
+		{@if cond="('{data.user.profileSetup}' == 'group')"}
+			{>"public/templates/aboutNR.dust" complete="true" /}
+			<div class="span6 thumbnail" id="div-signup-group">
+				<h4>All set to explore</h4>
+			</div>
+		{/if}
+		<input type="hidden" id="signup-user-location" value="{data.user.location}" name="userLocation"/>
+	{:else}
+		{>"public/templates/aboutNR.dust" intro="true" /}
+		<div class="span6 thumbnail">
+			<a href="/fbauth"><img class="fbClass" src="../../../images/fb.png"/></a>
+		</div>
+	{/data.user.name}
+</div>

@@ -1,0 +1,20 @@
+<div class="thumbnail span4">
+    {?intro}
+    <div class="caption">
+        <h3>Near Ring</h3>
+        <p>Bridging the gap between people who want it and people who want it within your organization / institution and living appartment</p>
+    </div>
+    {/intro}
+    {?personal}
+     <div class="caption">
+        <h3>Complete your profile</h3>
+        <p>Save your email id and mobile number to let others contact your when in need.</p>
+    </div>
+    {/personal}
+    {?group}
+        <div class="caption">
+            <h3>Join your groups</h3>
+            <p>Join your working / studying and living groups to see what people in your group want or have for you.</p>
+        </div>
+    {/group}
+</div>

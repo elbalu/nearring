@@ -14,7 +14,7 @@
     </div>
 
     <script type="text/template" id="user-list-template">
-      <a href="#/new" class="btn btn-danger">New User</a>
+      <a href="#/new" class="btn btn-success">New User</a>
       <hr/>
       <table class="table striped">
         <thead>
@@ -31,7 +31,8 @@
               <td><%= user.get('firstname') %></td>
               <td><%= user.get('lastname') %></td>
               <td><%= user.get('age') %></td>
-              <td></td>
+              <td><a href="#/edit/<%= user.id %>" class="btn">Edit</a>&#160;
+              </td>
             </tr>
           <% }); %>
          
@@ -40,15 +41,21 @@
     </script>
     <script type="text/template" id="user-edit-form">
       <form class="edit-user-form">
-        <legend>Add new user</legend>
+        <legend><%= user ? 'Update' : 'Create'%> user</legend>
         <label>First name</label>
-        <input type="text" name="firstname"/>
+        <input type="text" name="firstname" value="<%= user ? user.get('firstname') : '' %>"/>
         <label>Last name</label>
-        <input type="text" name="lastname"/>
+        <input type="text" name="lastname" value="<%= user ? user.get('lastname') : '' %>"/>
         <label>Age</label>
-        <input type="text" name="age"/>
+        <input type="text" name="age" value="<%= user ? user.get('age') : '' %>"/>
         <hr/>
-        <button type="submit" class="btn">Create</button>
+        <% if(user) { %>
+          <input type="hidden"  name="id" value="<%= user ? user.get('id') : '' %>"/>
+        <% }; %>  
+        <button type="button" class="btn edit-user-btn"><%= user ? 'Update' : 'Create'%></button>
+        <% if(user) { %>
+          &#160;<button type="button" class="btn btn-danger delete">Delete</button>
+        <% }; %>  
       </form>
     </script>
 
@@ -57,10 +64,30 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
 
     <script>
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+
       var Users = Backbone.Collection.extend({
         url:'/users'
       });
-
+      var User = Backbone.Model.extend({
+        urlRoot:'/users'
+      });
       var UserList = Backbone.View.extend({
         el:'.page',
         render:function(){
@@ -80,15 +107,49 @@
       });
       var EditUser = Backbone.View.extend({
         el:'.page',
-        render: function(){
-          var template=_.template($('#user-edit-form').html(),{});
-          this.$el.html(template);
+        render: function(options){
+          var that = this;
+          if(options.id){
+            that.user = new User({id: options.id});
+            that.user.fetch({
+              success: function(user){
+                var template=_.template($('#user-edit-form').html(),{user:user});
+            that.$el.html(template);
+              }
+            })
+          }else{
+            var template=_.template($('#user-edit-form').html(),{user:null});
+            this.$el.html(template);
+          }
+        },
+        events: {
+          'click button.edit-user-btn' : 'saveUser',
+          'click button.delete' : 'deleteUser'
+        },
+        saveUser: function(ev){
+          var userDetails = $(ev.currentTarget).closest('form').serializeObject();
+          var user = new User();
+          user.save(userDetails,{
+            success: function(user){
+              router.navigate('', {trigger: true});
+            }
+          });
+          return false;
+        },
+        deleteUser: function(ev){
+          this.user.destroy({
+            success: function(){
+              router.navigate('',{trigger: true});
+            }
+          });
+          return false;
         }
       });
       var Router = Backbone.Router.extend({
         routes:{
           '': 'home',
-          'new': 'editUser'
+          'new': 'editUser',
+          'edit/:id' : 'editUser'
         }
       });
       var userList = new UserList();
@@ -97,8 +158,8 @@
       router.on('route:home', function(){
         userList.render();
       });
-      router.on('route:editUser', function(){
-        editUser.render();
+      router.on('route:editUser', function(id){
+        editUser.render({id:id});
       });
       Backbone.history.start();
 

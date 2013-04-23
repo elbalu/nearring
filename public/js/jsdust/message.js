@@ -1,0 +1,1 @@
+(function(){dust.register("message",body_0);function body_0(chk,ctx){return chk.write(" <div class=\"alert alert-").reference(ctx.getPath(false,["data","data","message","type"]),ctx,"h").write(" hide\"><p> ").reference(ctx.getPath(false,["data","data","message","content"]),ctx,"h").write(" </p></div>");}return body_0;})();

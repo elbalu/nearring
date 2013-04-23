@@ -1,1 +1,1 @@
-(function(){dust.register("hello",body_0);function body_0(chk,ctx){return chk.write("<h2 id=\"hello\">H ello</h2>");}return body_0;})();
+(function(){dust.register("hello",body_0);function body_0(chk,ctx){return chk.write("<h2 id=\"hello\">H ello</h2>data ").reference(ctx.get("viewName"),ctx,"h");}return body_0;})();

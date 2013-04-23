@@ -1,0 +1,3 @@
+ <div class="alert alert-{data.data.message.type} hide">
+	<p> {data.data.message.content} </p>
+</div>

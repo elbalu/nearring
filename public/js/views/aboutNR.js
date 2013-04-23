@@ -2,7 +2,7 @@ define([
 	'jquery', 
 	'underscore', 
 	'backbone',
-	'../jsdust/hello'
+	'../jsdust/aboutNR'
 	], 
 	function($, _, Backbone){
 	

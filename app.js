@@ -71,12 +71,12 @@ function (req, accessToken, refreshToken, profile, done) {
                 newUser.email = profile.emails[0].value,
                 newUser.username = profile.username,
                 newUser.location = profile._json.location.name,
+                newUser.profileSetup = 'empty',
                 newUser.accessToken = accessToken;
 
                 newUser.save(function (err) {
                     if (err) throw err;
                     console.log('New User: ' + newUser.name + ' created and logged in!');
-                    console.log(newUser);
                     done(null, newUser);
                 });
             }
@@ -134,9 +134,7 @@ app.get('/', function (req, res) {
             user: session.user,
             venues: session.venues,
             title: 'home page',
-            signup:{
-              personalProfile:true
-            }
+            personalProfile: true
         }
 
     };

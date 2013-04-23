@@ -1,5 +1,5 @@
 
-{>"public/templates/signup/signup.dust"/}
+{>"public/templates/signup.dust"/}
 {>"public/templates/inc/features.dust"/}
 
 <a href="/app" class="proceed">Get app</a>

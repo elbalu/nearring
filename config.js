@@ -15,14 +15,14 @@ module.exports = {
 	},
 	production:{
 		fb:{
-			appId: '560090074010481',
-			appSecret: 'b0a9050b2dc38397a7bd8001b3514566',
-			url: 'http://nearring.aws.af.cm/'
+			appId: '512628325463187',
+			appSecret: '5e77894622980828ff8ebc7d58aaf7c2',
+			url: 'http://nearring.com/'
 		},
 		fs:{
 			appId: 'RSQVY140L01RAFABSGX45ODZ3ZBTWEFBIZXSO3MWUUA2JKOH',
 			appSecret: 'YUJT1DBUKWDQV5ENXXCKDTI4E4LP4DKSL1FWEXG3JEXMOHCA',
-			url: 'http://nearring.aws.af.cm/',
+			url: 'http://nearring.com/',
 			authUrl: 'https://foursquare.com/',
 			apiUrl: 'https://api.foursquare.com/'
 		}

@@ -4882,6 +4882,42 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+.mt {
+  margin-top: 20px;
+}
+.m {
+  margin: 20px;
+}
+.mb {
+  margin-bottom: 20px;
+}
+.ml {
+  margin-left: 20px;
+}
+.mr {
+  margin-right: 20px;
+}
+.p {
+  padding: 20px;
+}
+.pt {
+  padding-top: 20px;
+}
+.pl {
+  padding-left: 20px;
+}
+.pr {
+  padding-right: 20px;
+}
+.pb {
+  padding-bottom: 20px;
+}
+.inline {
+  display: inline;
+}
+.block {
+  display: block;
+}
 /* CUSTOMIZE THE CAROUSEL
     -------------------------------------------------- */
 /* Carousel base class */
@@ -5597,17 +5633,29 @@ body {
 .thumbnail {
   border-top: 5px solid #A4C143;
 }
-.thumbnail img {
-  height: 40px;
-  width: 40px;
-  border: 1px solid #48484d;
-  margin: 10px;
-}
-.thumbnail-ga {
+.thumbnail-blue {
   border-top: 5px solid #27BFC7;
 }
 .sq {
   background: url(../images/square.png);
   width: 50px;
   height: 50px;
+}
+.signupContainer {
+  width: 62%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signupContainer .thumbnail-signup img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+.post img {
+  height: 40px;
+  width: 40px;
+  margin: 10px;
+}
+.select2-container {
+  width: 255px;
 }

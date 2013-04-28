@@ -1,19 +1,22 @@
-<div class="thumbnail span4">
+<div class="thumbnail thumbnail-signup span6">
     {?intro}
     <div class="caption">
-        <h3>Near Ring</h3>
-        <p>Bridging the gap between people who want it and people who want it within your organization / institution and living appartment</p>
+        <h3>What is Near Ring?</h3>
+        <img class="pull-left" src="../../../images/bridge1.png"/><p>Bridging the gap between people who want it and people who have it within your organization / institution and living appartment</p>
     </div>
     {/intro}
     {?personal}
      <div class="caption">
+
         <h3>Complete your profile</h3>
+        <img class="pull-left" src="../../../images/complete-profile.png"/>
         <p>Save your email id and mobile number to let others contact your when in need.</p>
     </div>
     {/personal}
     {?group}
         <div class="caption">
             <h3>Join your groups</h3>
+            <img class="pull-left" src="../../../images/join-group.png"/>
             <p>Join your working / studying and living groups to see what people in your group want or have for you.</p>
         </div>
     {/group}

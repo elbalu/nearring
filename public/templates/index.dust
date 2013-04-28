@@ -1,5 +1,6 @@
-
-{>"public/templates/signup.dust"/}
+<div id="signupBanner" class="clearfix hero-unit">
+	{>"public/templates/signup.dust"/}
+</div>
 {>"public/templates/inc/features.dust"/}
 
 <a href="/app" class="proceed">Get app</a>

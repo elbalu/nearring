@@ -2,7 +2,7 @@
 	{?data.user.name}
 		{@if cond="('{data.user.profileSetup}' == 'empty')"}
 			{>"public/templates/aboutNR.dust" personal="true"/}
-			<div class="span6 thumbnail thumbnail-blue" id="div-signup-profile">
+			<div class="span5 thumbnail thumbnail-blue" id="div-signup-profile">
 				<div class="caption">
 					<h3>Personal Profile</h3>
 					<form action="/personalProfile" method="post" class="proceed form-horizontal" id="form-personal-profile">
@@ -37,7 +37,7 @@
 		{! personal profile save and move to save group !}
 		{@if cond="('{data.user.profileSetup}' == 'personal')"}
 			{>"public/templates/aboutNR.dust" group="true" /}
-			<div class="span6 thumbnail thumbnail-blue" id="div-signup-group">
+			<div class="span5 thumbnail thumbnail-blue" id="div-signup-group">
 				<div class="caption">
 					<h3>Create groups.</h3>
 					<p>Create one group for working/studying location and one for leaving location</p>
@@ -70,14 +70,11 @@
 		{! group save. congrulate !}
 		{@if cond="('{data.user.profileSetup}' == 'group')"}
 			{>"public/templates/aboutNR.dust" complete="true" /}
-			<div class="span6 thumbnail thumbnail-blue" id="div-signup-group">
-				<h4>All set to explore</h4>
-			</div>
 		{/if}
 		<input type="hidden" id="signup-user-location" value="{data.user.location}" name="userLocation"/>
 	{:else}
 		{>"public/templates/aboutNR.dust" intro="true" /}
-		<div class="span6 thumbnail thumbnail-blue">
+		<div class="span5 thumbnail thumbnail-blue">
 			<div class="caption">
 		        <h3>Log In With Facebook</h3>
 				<a href="/fbauth" class="pull-left mr"><img class="fbClass" src="../../../images/fb.png"/></a>

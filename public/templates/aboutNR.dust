@@ -1,4 +1,4 @@
-<div class="thumbnail thumbnail-signup span6">
+<div class="thumbnail thumbnail-signup span5">
     {?intro}
     <div class="caption">
         <h3>What is Near Ring?</h3>
@@ -20,4 +20,11 @@
             <p>Join your working / studying and living groups to see what people in your group want or have for you.</p>
         </div>
     {/group}
+    {?complete}
+        <div class="caption">
+            <h3>Awesome!!!</h3>
+            <img class="pull-left" src="../../../images/finish.png"/>
+            <p>Get started. Exlpore and have fun.</p>
+        </div>
+    {/complete}
 </div>

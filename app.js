@@ -15,7 +15,6 @@ var config = require('./config'),
     routes = require('./routes/index');
 
 //setting up four-square
-var venueModel = {};
 var userLoc = '';
 
 
@@ -119,8 +118,6 @@ app.get('/', function (req, res) {
 
     if (req.session.user) {
         userLoc = req.session.user.location;
-        // userLoc = userLoc.split(',');
-        // userLoc = userLoc[0];
     }
 
 

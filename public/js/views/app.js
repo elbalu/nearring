@@ -64,8 +64,7 @@ define([
 
             }
             var nearby;
-            if ($('#signup-user-location')) {
-                console.log($('#signup-user-location').val().split(',')[0]);
+            if ($('#signup-user-location').length>0) {
                 nearby = $('#signup-user-location').val().split(',')[0];
             }
             
